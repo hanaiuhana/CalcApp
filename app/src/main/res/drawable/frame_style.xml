@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true" android:color="@color/color_navy">
+        <shape android:shape="rectangle">
+            <!-- 枠線 width:線の幅、color:線の色 -->
+            <stroke
+                android:width="2dp"
+                android:color="@color/color_navy"
+                />
+            <!-- 角の丸み -->
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+    <item android:state_pressed="false" android:color="@color/color_blue">
+        <shape android:shape="rectangle">
+            <!-- 枠線 width:線の幅、color:線の色 -->
+            <stroke
+                android:width="2dp"
+                android:color="@color/color_blue" />
+            <!-- 角の丸み -->
+            <corners android:radius="18dp" />
+        </shape>
+    </item>
+
+</selector>
+
+

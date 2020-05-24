@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">CalcApp</string>
+    <string name="not_entered_message">数値を入力してね</string>
+    <string name="text_plus">+</string>
+    <string name="text_minus">-</string>
+    <string name="text_times">×</string>
+    <string name="text_divide">÷</string>
+</resources>
