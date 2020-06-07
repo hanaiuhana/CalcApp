@@ -5,4 +5,6 @@
     <string name="text_minus">-</string>
     <string name="text_times">×</string>
     <string name="text_divide">÷</string>
+    <string name="text_back_main">もう一度計算する</string>
+    <string name="text_enter_num">何か数値を入力してください</string>
 </resources>
