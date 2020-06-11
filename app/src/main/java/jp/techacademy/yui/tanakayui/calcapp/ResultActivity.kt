@@ -18,25 +18,30 @@ class ResultActivity : AppCompatActivity() {
 //        var test = String.format("%,.2f",result);
 //        text_result.text = result.toString()
 
-        var numtest = result.toInt()
-        if (result.equals(numtest)) {
-            String.format("%d",numtest);
+        //int型にする
+        var seisuu = result.toInt()
+        //小数から整数を引く
+        if (seisuu - result == 0.0) {
+            //差が０なら整数なので、整数表示させる
+            var test = String.format("%,.0f", result);
+            text_result.text = test
         } else {
-            String.format("%s",result);
+            text_result.text = result.toString()
         }
-
-        text_result.text = result.toString()
 
         button_back_main.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            //質問中
+            finish()
         }
+
+    }
+    //質問中
+    override fun onBackPressed() {
+        super.onBackPressed()
+        val intent = Intent(this, MainActivity::class.java)
+        startActivity(intent)
+
     }
 }
-//public static String format(double d)
-//{
-//    if(d == (int) d)
-//        return String.format("%d",(int)d);
-//    else
-//        return String.format("%s",d);
-//}

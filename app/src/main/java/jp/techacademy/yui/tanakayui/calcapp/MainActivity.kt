@@ -66,6 +66,8 @@ class MainActivity : AppCompatActivity() ,View.OnClickListener{
                 }
             }
             goToResult(resultNum)
+            //↓必要？
+//            finish()
         }
     }
 
