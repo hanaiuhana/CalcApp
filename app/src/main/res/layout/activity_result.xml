@@ -8,6 +8,7 @@
         android:id="@+id/text_result"
         android:layout_centerInParent="true"
         style="@style/TextSetting"
+        android:inputType="textMultiLine"
         />
     <Button
         android:id="@+id/button_back_main"

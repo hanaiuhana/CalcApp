@@ -1,9 +1,7 @@
 package jp.techacademy.yui.tanakayui.calcapp
 
-import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
-import android.util.Log
 import kotlinx.android.synthetic.main.activity_result.*
 
 class ResultActivity : AppCompatActivity() {
@@ -13,10 +11,7 @@ class ResultActivity : AppCompatActivity() {
         setContentView(R.layout.activity_result)
 
         //整数の時だけ、小数点以下切り捨て
-
         var result = intent.getDoubleExtra("RESULT_NUM", 0.0)
-//        var test = String.format("%,.2f",result);
-//        text_result.text = result.toString()
 
         //int型にする
         var seisuu = result.toInt()
@@ -30,18 +25,7 @@ class ResultActivity : AppCompatActivity() {
         }
 
         button_back_main.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            //質問中
             finish()
         }
-
-    }
-    //質問中
-    override fun onBackPressed() {
-        super.onBackPressed()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-
     }
 }
