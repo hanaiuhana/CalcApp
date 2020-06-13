@@ -1,14 +1,14 @@
 package jp.techacademy.yui.tanakayui.calcapp
 
 import android.content.Intent
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.design.widget.Snackbar
+import android.support.v7.app.AppCompatActivity
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
-import android.widget.Button
 import kotlinx.android.synthetic.main.activity_main.*
+import java.math.BigDecimal
 
 class MainActivity : AppCompatActivity() ,View.OnClickListener{
 
@@ -22,31 +22,24 @@ class MainActivity : AppCompatActivity() ,View.OnClickListener{
         button_divide.setOnClickListener(this)
     }
 
-    fun goToResult(resultNum: Double) {
-        val intent = Intent(this, ResultActivity::class.java)
-        intent.putExtra("RESULT_NUM", resultNum)
-        startActivity(intent)
-    }
-    fun showMessage(v: View) {
-        Snackbar.make(v, R.string.text_enter_num, Snackbar.LENGTH_LONG)
-            .show()
-    }
-
     override fun onClick(v: View) {
         Log.d("testtest", "計算ボタンクリック！")
+
         var firstEmpty = TextUtils.isEmpty(edit_first.text)
         var secondEmpty = TextUtils.isEmpty(edit_second.text)
-        var firstNum = 0.0
-        var secondNum = 0.0
-        var resultNum = 0.0
+        var firstNum = BigDecimal(0.0)
+        var secondNum = BigDecimal(0.0)
+        var resultNum = BigDecimal(0.0)
+
         if (firstEmpty || secondEmpty) {
             showMessage(v)
         } else {
             if (!firstEmpty) {
-                firstNum = edit_first.text.toString().toDouble()
+                resultNum = firstNum.plus(secondNum)
+                firstNum = edit_first.text.toString().toBigDecimal()
             }
             if (!secondEmpty) {
-                secondNum = edit_second.text.toString().toDouble()
+                secondNum = edit_second.text.toString().toBigDecimal()
             }
             //計算
             when (v.id) {
@@ -63,9 +56,31 @@ class MainActivity : AppCompatActivity() ,View.OnClickListener{
                     resultNum = firstNum / secondNum
                 }
             }
-            goToResult(resultNum)
+            formatChange(resultNum)
         }
     }
 
+    private fun showMessage(v: View) {
+        Snackbar.make(v, R.string.text_enter_num, Snackbar.LENGTH_LONG).show()
+    }
 
+    //計算結果が整数時、小数点以下を表示させない
+    private fun formatChange(resultNum: BigDecimal) {
+        //int型にする
+        var resultDouble = resultNum.toDouble()
+        var resultInt= resultDouble.toInt()
+        var resultString = if (resultInt - resultDouble == 0.0) {
+            //小数から整数を引く→差が0なら整数なので、フォーマットを整数にする
+            String.format("%,.0f", resultNum)
+        } else {
+            resultNum.toString()
+        }
+        goToResult(resultString)
+    }
+
+    private fun goToResult(resultNum: String) {
+        val intent = Intent(this, ResultActivity::class.java)
+        intent.putExtra("RESULT_NUM", resultNum)
+        startActivity(intent)
+    }
 }
